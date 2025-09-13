@@ -1,1 +1,15 @@
-/config/doom/custom.el
+*
+!.gitignore
+
+!early-init.el
+!elpaca-init.el
+!init.el
+
+!lisp/
+!lisp/**
+
+!lsp-bridge/
+!lsp-bridge/**
+
+!snippets/
+!snippets/**

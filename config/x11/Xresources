@@ -1,6 +1,0 @@
-! xrdb -merge ~/.Xresources
-! use doom-one colors so emacs dont have white flash at startup
-Emacs.background: #282c34
-Emacs.foreground: #bbc2cf
-Emacs.cursorColor: #51afef
-Emacs.pointerColor: #51afef
