@@ -32,7 +32,7 @@
 (defun +open-config ()
   "Open Emacs configuration."
   (interactive)
-  (find-file (read-file-name "Find file in config: " user-emacs-directory)))
+  (find-file (read-file-name "Find file in config: " (file-truename user-emacs-directory))))
 
 (defun +reload-init ()
   "Reload Emacs init.el."

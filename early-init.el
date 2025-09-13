@@ -28,4 +28,10 @@
                     :background "#282c34"
                     :foreground "#bbc2cf")
 
+(defgroup +deirn nil
+  "Deirn's custom group."
+  :group 'emacs)
+
+(load! private/early-init.el nil t)
+
 ;;; early-init.el ends here.

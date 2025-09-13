@@ -2,10 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defgroup +deirn nil
-  "Deirn's custom group."
-  :group 'emacs)
-
-(load! ../lisp)
+(load! lisp)
+(load! private/init.el nil t)
 
 ;;; init.el ends here.

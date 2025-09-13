@@ -10,10 +10,9 @@
 (defun -load (file dir no-error)
   (if (file-name-absolute-p file)
       (-load-abs file no-error)
-    (when (not dir)
-      (setq dir (file-truename (file-name-directory load-file-name))
-	        file (expand-file-name file dir)))
-    (-load-abs file no-error)))
+    (when (null dir)
+      (setq dir (file-truename (file-name-directory load-file-name))))
+    (-load-abs (expand-file-name file dir) no-error)))
 
 (defmacro load! (file &optional dir no-error)
   "Load FILE(s) relative to DIR.
