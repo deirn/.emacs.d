@@ -4,7 +4,6 @@
 ;;; Code:
 
 (use-package combobulate
-  :ensure (:host github :repo "mickeynp/combobulate")
   :hook
   (prog-mode . combobulate-mode))
 

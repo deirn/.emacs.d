@@ -28,14 +28,14 @@ If NO-ERROR is not nil, report no error."
     `(progn ,@(mapcar (lambda (f) `(load! ,f ,dir ,no-error))
                       file))))
 
-(let ((dir (expand-file-name ".." (file-truename user-emacs-directory))))
-  (dolist (file (directory-files dir nil directory-files-no-dot-files-regexp))
-    (unless (or (string= file "bootstrap")
-                (string= file "early-init.el")
-                (string-match-p "^\\.git" file))
-      (let ((source (expand-file-name file dir))
-            (target (expand-file-name file user-emacs-directory)))
-        (make-symbolic-link source target t)))))
+(setq +deirnmacs-directory (expand-file-name ".." (file-truename user-emacs-directory)))
+(dolist (file (directory-files +deirnmacs-directory nil directory-files-no-dot-files-regexp))
+  (unless (or (string= file "bootstrap")
+              (string= file "early-init.el")
+              (string-match-p "^\\.git" file))
+    (let ((source (expand-file-name file +deirnmacs-directory))
+          (target (expand-file-name file user-emacs-directory)))
+      (make-symbolic-link source target t))))
 
 (load! ../early-init)
 

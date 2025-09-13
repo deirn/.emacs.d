@@ -4,7 +4,6 @@
 ;;; Code:
 
 (use-package tinee
-  :ensure (:repo "https://codeberg.org/tusharhero/tinee.git")
   :custom
   (tinee-send-text-function 'tinee-paste))
 

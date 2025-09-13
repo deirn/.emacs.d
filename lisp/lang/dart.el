@@ -3,7 +3,6 @@
 ;;; Code:
 
 (use-package dart-ts-mode
-  :ensure (:host github :repo "50ways2sayhard/dart-ts-mode")
   :mode "\\.dart\\'"
   :config
   (+ts 'dart "https://github.com/UserNobody14/tree-sitter-dart")

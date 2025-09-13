@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(load! (elpaca-init
+(load! (package-lock
+	    elpaca-init
         package-utils
         optimizations
         keybind-setup

@@ -4,10 +4,7 @@
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
-(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1 :inherit ignore
-                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
-                              :build (:not elpaca--activate-package)))
+(defvar elpaca-order `(elpaca ,@(gethash 'elpaca +packages)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
        (build (expand-file-name "elpaca/" elpaca-builds-directory))
        (order (cdr elpaca-order))
@@ -39,8 +36,10 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
+(add-hook 'elpaca-order-functions #'+package-lock-elpaca-function)
+
 ;; Install use-package support
-(elpaca elpaca-use-package
+(elpaca `(elpaca-use-package ,@(gethash 'elpaca-use-package +packages))
   ;; Enable use-package :ensure support for Elpaca.
   (elpaca-use-package-mode))
 

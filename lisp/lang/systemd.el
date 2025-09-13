@@ -3,7 +3,6 @@
 ;;; Code:
 
 (use-package systemd
-  :ensure (:files (:defaults "*directives.txt"))
   :mode ("\\.service\\'" . systemd-mode)
   :init
   (add-hook 'systemd-mode-hook #'display-line-numbers-mode))

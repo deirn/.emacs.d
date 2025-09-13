@@ -24,6 +24,4 @@
 
 (use-package pcre2el)
 
-;; (load! ../thirdparty/ouroboroslisp-indent)
-
 ;;; elisp.el ends here.

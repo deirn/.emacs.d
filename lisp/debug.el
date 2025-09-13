@@ -36,7 +36,6 @@ https://emacs.stackexchange.com/a/78310"
   (flymake-diagnostics-buffer-mode . +killable-mode))
 
 (use-package flymake-popon
-  :ensure (:repo "https://codeberg.org/akib/emacs-flymake-popon.git")
   :custom
   (flymake-popon-width 100)
   :config

@@ -9,15 +9,11 @@
     (add-to-list 'lsp-bridge-single-lang-server-mode-list (cons mode command))))
 
 (use-package mason
-  :ensure (:host github :repo "deirn/mason.el")
   :hook
   (+late . mason-ensure))
 
 (use-package lsp-bridge
   :after (yasnippet markdown-mode orderless nerd-icons-corfu el-patch)
-  :ensure (:host github :repo "manateelazycat/lsp-bridge"
-           :files (:defaults "*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")
-           :build (:not elpaca--byte-compile))
   :custom
   ;; use uv, so it has consistent package version
   (lsp-bridge-python-command "uv")
@@ -177,8 +173,7 @@
   (lsp-bridge-mode . flymake-bridge-setup))
 
 (use-package flymake-bridge
-  :after flymake
-  :ensure (:host github :repo "eki3z/flymake-bridge" :main nil))
+  :after flymake)
 
 (defun +has-lsp ()
   "Return whether the current buffer has LSP server."

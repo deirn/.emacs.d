@@ -3,7 +3,6 @@
 ;;; Code:
 
 (use-package beancount
-  :ensure (:host github :repo "beancount/beancount-mode")
   :mode ("\\.beancount\\'" . beancount-mode))
 
 ;;; beancount.el ends here.
