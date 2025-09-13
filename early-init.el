@@ -1,4 +1,6 @@
 ;;; early-init.el --- -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 
 (setq package-enable-at-startup nil)
 
@@ -9,8 +11,7 @@
 ;; Suppress compiler warnings.
 ;; https://github.com/doomemacs/doomemacs/blob/751ac6134b6abe204d9c514d300343b07b26da3c/lisp/doom.el#L609
 (setq native-comp-async-report-warnings-errors init-file-debug
-        native-comp-warning-on-missing-source init-file-debug)
-
+      native-comp-warning-on-missing-source init-file-debug)
 
 ;; https://github.com/doomemacs/doomemacs/blob/e6c755305358412a71a990fc2cf592c629edde1e/early-init.el#L36
 (if noninteractive
@@ -27,4 +28,4 @@
                     :background "#282c34"
                     :foreground "#bbc2cf")
 
-;;; early-init.el ends here
+;;; early-init.el ends here.
