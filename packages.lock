@@ -57,7 +57,7 @@
 (magit-section :ref "1f895f1326ba93e65e3533fb910c3e6bcae2dcc4")
 (marginalia :ref "cb3a69c039cf3b4ab007a72f802fc5f4699e8120")
 (markdown-mode :ref "d51c469133d220823cc6ab50ff8e8743ed6e42fb")
-(mason :host github :repo "deirn/mason.el" :ref "55178decc20c50802e4a84af692cad8edb5829b3")
+(mason :host github :repo "deirn/mason.el" :ref nil)
 (mini-frame :ref "f420020aa33a1b00407000addd995170a36e026e")
 (minions :ref "7aeabcab964fefacb15a72d983953c53e238d344")
 (nerd-icons :ref "3774e0578b1023bd2ae10735e28c0cd1ccf46889")
