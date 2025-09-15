@@ -8,7 +8,7 @@
   (transient-mode-line-format nil))
 
 (use-package posframe)
-(defvar +posframe-y-offset 100)
+(defvar +posframe-y-offset (- (* 5 (frame-char-height)) 1))
 (defvar +posframe-border-color "#bbc2cf")
 (defvar +posframe-params '((left-fringe 10)
                            (right-fringe 10)))
@@ -23,14 +23,27 @@
     (which-key-posframe-parameters `(,@+posframe-params
                                      (z-group . above)))
     :config
+    (defun +vertico-posframe ()
+      (when-let* ((vertico-buffer (bound-and-true-p vertico-posframe--buffer))
+                  (vertico-posframe (posframe--find-existing-posframe vertico-buffer))
+                  (_ (eq (window-buffer (frame-root-window vertico-posframe)) vertico-buffer))
+                  (_ (frame-visible-p vertico-posframe)))
+        vertico-posframe))
+
+    (define-advice which-key-posframe--max-dimensions (:override (_) fix-dim)
+      (let ((dim (cons (- (frame-height) 10)
+                       (round (* (frame-width) 0.62))))
+            (vertico (+vertico-posframe)))
+        (when vertico
+          (setf (car dim) (- (car dim) vertico-count 1)))
+        dim))
+
     (defun +which-key-posframe-poshandler (info)
-      (if-let* ((og-pos (+posframe-poshandler info))
-                (vertico-buffer (bound-and-true-p vertico-posframe--buffer))
-                (vertico-posframe (posframe--find-existing-posframe vertico-buffer))
-                (_ (eq (window-buffer (frame-root-window vertico-posframe)) vertico-buffer))
-                (_ (frame-visible-p vertico-posframe)))
-          (cons (car og-pos) (+ +posframe-y-offset (frame-pixel-height vertico-posframe) -1))
-        og-pos))
+      (let ((pos (+posframe-poshandler info))
+            (vertico (+vertico-posframe)))
+        (when vertico
+          (setf (cdr pos) (+ +posframe-y-offset (frame-pixel-height vertico) (frame-char-height) -2)))
+        pos))
     (setq which-key-posframe-poshandler #'+which-key-posframe-poshandler)
 
     (define-advice which-key-posframe--show-buffer (:around (orig-fn dim) fix-dim)
@@ -78,8 +91,8 @@
     (defun +vertico-posframe-get-size (buf)
       (let ((h (1+ vertico-count))
             (w (round (* (frame-width) 0.62))))
-      (list :min-height h :min-width w
-            :max-height h :max-width w)))
+        (list :min-height h :min-width w
+              :max-height h :max-width w)))
     (setq vertico-posframe-size-function #'+vertico-posframe-get-size)
     :hook
     (+late . vertico-multiform-mode))

@@ -41,9 +41,10 @@
   (message "init.el reloaded!"))
 
 (map! spc
-  "e c" '("open config" . +open-config)
-  "e r" '("restart"     . restart-emacs)
-  "e q" '("quit"        . save-buffers-kill-emacs))
+  "e c" '("open config"    . +open-config)
+  "e d" '("debug on error" . toggle-debug-on-error)
+  "e r" '("restart"        . restart-emacs)
+  "e q" '("quit"           . save-buffers-kill-emacs))
 
 (map! nil
   "M-<f4>" #'save-buffers-kill-emacs)

@@ -195,11 +195,12 @@
     (call-interactively #'consult-imenu)))
 
 (map! spc
-  "c a" '("action"        . lsp-bridge-code-action)
-  "c r" '("rename symbol" . lsp-bridge-rename)
-  "c s" '("symbol list"   . consult-imenu)
-  "t l" '("lsp"           . lsp-bridge-mode)
-  "t L" '("restart lsp"   . lsp-bridge-restart-process))
+  "l"       '(:ignore t :which-key "lsp")
+  "c s"     '("symbol list"   . consult-imenu)
+  "l a"     '("action"        . lsp-bridge-code-action)
+  "l r"     '("rename symbol" . lsp-bridge-rename)
+  "l C-l"   '("toggle lsp"    . lsp-bridge-mode)
+  "l C-M-l" '("restart lsp"   . lsp-bridge-restart-process))
 
 (map! normal
   "K" #'+show-documentation)

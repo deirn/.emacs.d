@@ -44,7 +44,8 @@
   (message "Set tab width to %d" num))
 
 (map! spc
-  "c f" '("format" . +format-buffer)
-  "c t" '("tab width" . +set-tab-width))
+  "c a"   '("align"     . align-regexp)
+  "c f"   '("format"    . +format-buffer)
+  "c TAB" '("tab width" . +set-tab-width))
 
 ;;; formatting.el ends here.
