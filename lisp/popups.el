@@ -23,5 +23,6 @@
 (+pop '(this-command . help))
 (+pop '(this-command . customize))
 (+pop '(this-command . man))
+(+pop '(this-command . shell-command))
 
 ;;; popups.el ends here.

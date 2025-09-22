@@ -23,6 +23,7 @@
         csv
         dart
         elisp
+        kotlin
         markdown
         nix
         python

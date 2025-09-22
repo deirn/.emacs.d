@@ -36,6 +36,8 @@
 (use-package yasnippet-snippets :after yasnippet :defer t)
 
 (use-package cape
+  :custom
+  (cape-dabbrev-buffer-function #'cape-text-buffers)
   :init
   (add-hook 'completion-at-point-functions #'cape-dabbrev))
 

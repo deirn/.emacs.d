@@ -51,6 +51,7 @@
 (hide-mode-line :ref "ddd154f1e04d666cd004bf8212ead8684429350d")
 (hl-todo :ref "862d903e7242f3cf90e05846aa52a4270851d496")
 (imenu-list :ref "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
+(kotlin-ts-mode :ref "051c9ef534956c235343fb41546623ff87a1695b")
 (llama :ref "ec1d4ef02f5572fc5aff3f62d3e7ef791f444456")
 (lsp-bridge :host github :repo "deirn/lsp-bridge" :ref "deirn" :files (:defaults "*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources") :build (:not elpaca--byte-compile))
 (magit :ref "1f895f1326ba93e65e3533fb910c3e6bcae2dcc4")

@@ -112,6 +112,7 @@
     (add-to-list 'mini-frame-ignore-commands 'elpaca-ui-search)
     (add-to-list 'mini-frame-ignore-commands 'evil-ex)
     (add-to-list 'mini-frame-ignore-commands 'shell-command)
+    (add-to-list 'mini-frame-ignore-commands 'dape)
     (set-face-background 'child-frame-border +posframe-border-color)
     :hook
     (+late . mini-frame-mode)))

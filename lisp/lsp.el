@@ -159,6 +159,7 @@
         (unless +lsp-bridge-doc-mode
           (+lsp-bridge-doc-mode 1))
         (display-line-numbers-mode -1)
+        (+wrap-mode 1)
         (general-define-key
          :keymaps 'local
          :states '(normal motion)

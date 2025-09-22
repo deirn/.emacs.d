@@ -31,7 +31,8 @@
   :hook
   (+late . dirvish-override-dired-mode)
   (dired-mode . dired-omit-mode)
-  (after-save . +dirvish-side-revert))
+  ;; (after-save . +dirvish-side-revert)
+  )
 
 (use-package diredfl
   :after dirvish

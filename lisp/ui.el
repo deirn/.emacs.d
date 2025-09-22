@@ -93,13 +93,20 @@
     (global-hide-mode-line-mode enable)
     (perfect-margin-mode enable)))
 
+(define-minor-mode +wrap-mode
+  "Toggle Wrap Mode."
+  :init-value nil
+  (let ((e (if +wrap-mode 1 -1)))
+    (visual-line-mode e)
+    (visual-wrap-prefix-mode e)))
+
 (map! spc
   "t m"   '("mode line"        . hide-mode-line-mode)
   "t M-m" '("global mode line" . global-hide-mode-line-mode)
   "t M"   '("menu bar"         . menu-bar-mode)
   "t n"   '("line numbers"     . display-line-numbers-mode)
   "t p"   '("perfect margin"   . perfect-margin-mode)
-  "t w"   '("wrap"             . visual-line-mode)
+  "t w"   '("wrap"             . +wrap-mode)
   "t z"   '("zen"              . +zen-mode)
   "t SPC" '("whitespace"       . whitespace-mode))
 
