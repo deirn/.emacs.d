@@ -51,9 +51,8 @@
                            nil)
                   t))
               nil t))
-
   :hook
-  (window-size-change-functions . +schedule-dashboard-refresh)
+  ;; (window-size-change-functions . +schedule-dashboard-refresh)
   (dashboard-mode . +dont-kill-dashboard-buffer))
 
 (map! spc

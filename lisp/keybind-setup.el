@@ -6,12 +6,23 @@
 (use-package which-key
   :ensure nil
   :custom
-  (which-key-show-prefix 'top)
   (which-key-idle-delay 0.3)
   (which-key-sort-order 'which-key-key-order-alpha)
   (which-key-sort-uppercase-first nil)
   (which-key-dont-use-unicode nil)
   (which-key-min-display-lines 5)
+  :config
+  (define-advice which-key--side-window-max-dimensions (:override () center)
+    (cons 10 200))
+
+  (define-advice which-key--show-buffer-side-window (:around (orig-fn dim) center)
+    (let* ((window (funcall orig-fn dim))
+           (char-width (frame-char-width))
+           (frame-width (frame-width))
+           (wk-width (cdr dim))
+           (fringe (round (/ (- frame-width wk-width) 2)))
+           (fringe (* char-width (max 0 fringe))))
+      (set-window-fringes window fringe fringe)))
   :hook
   (+late . which-key-mode))
 

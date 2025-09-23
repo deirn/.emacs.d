@@ -8,10 +8,11 @@
         optimizations
         keybind-setup
         behaviour
+        minibuffer
         ui
         frame
         window
-        child-frames
+        ;; child-frames
         popups
         buffer
         dashboard
@@ -22,7 +23,6 @@
         undo
         evil
         completions
-        minibuffer
         lsp
         lang
         edit

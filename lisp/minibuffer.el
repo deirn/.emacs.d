@@ -2,6 +2,37 @@
 ;;; Commentary:
 ;;; Code:
 
+(defun +minibuffer-fringe-update (window)
+  "Upadate fringe for minibuffer WINDOW."
+  (let* ((char-width (frame-char-width))
+         (frame-width (frame-width))
+         (minibuffer-width (min frame-width 200))
+         (fringe (round (/ (- frame-width minibuffer-width) 2)))
+         (fringe (* char-width (max 0 fringe))))
+    (set-window-fringes window fringe fringe)))
+
+(defun +minibuffer-fringe-setup ()
+  "Adjust minibuffer WINDOW fringe."
+  (let* ((window (selected-window))
+         (buffer (window-buffer window)))
+    (with-current-buffer buffer
+      (+minibuffer-fringe-update window)
+      (add-hook 'window-size-change-functions #'+minibuffer-fringe-update 0 t))))
+(add-hook 'minibuffer-setup-hook #'+minibuffer-fringe-setup)
+
+(defun +center-message-function (msg)
+  "Center echo area MSG."
+  (when (not (minibufferp (window-buffer)))
+    (let* ((frame-width (frame-width))
+           (msg-width (string-width msg))
+           (spc-width (round (/ (- frame-width msg-width) 2)))
+           (spc-width (max 0 spc-width))
+           (spc (make-string spc-width ?\s)))
+      (setq msg (concat spc msg))))
+  (set-message-functions msg))
+
+(setq set-message-function #'+center-message-function)
+
 (use-package xref
   :ensure nil
   :custom

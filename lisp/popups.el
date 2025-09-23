@@ -3,6 +3,26 @@
 ;;;   Side Popups
 ;;; Code:
 
+(use-package transient
+  :custom
+  (transient-mode-line-format nil)
+  :config
+  (define-advice transient--show (:after () center)
+    (let ((char-width (frame-char-width))
+          (frame-width (frame-width))
+          fringe
+          max-line
+          (max-length 0))
+      (with-current-buffer transient--buffer
+        (save-excursion
+          (setq max-line (line-number-at-pos (point-max)))
+          (goto-char (point-min))
+          (while (< (line-number-at-pos) max-line)
+            (setq max-length (max max-length (length (thing-at-point 'line))))
+            (forward-line 1))))
+      (setq fringe (* char-width (max 0 (round (/ (- frame-width max-length) 2)))))
+      (set-window-fringes transient--window fringe fringe))))
+
 (defun +pop (pred &optional side width)
   "Add `display-buffer-alist' side window rule for PRED with SIDE and WIDTH."
   (add-to-list 'display-buffer-alist `(,pred

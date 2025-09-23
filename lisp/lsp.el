@@ -199,6 +199,7 @@
   "l"       '(:ignore t :which-key "lsp")
   "c s"     '("symbol list"   . consult-imenu)
   "l a"     '("action"        . lsp-bridge-code-action)
+  "l s"     '("symbol"        . lsp-bridge-workspace-list-symbols)
   "l r"     '("rename symbol" . lsp-bridge-rename)
   "l C-l"   '("toggle lsp"    . lsp-bridge-mode)
   "l C-M-l" '("restart lsp"   . lsp-bridge-restart-process))

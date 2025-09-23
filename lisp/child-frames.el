@@ -108,6 +108,7 @@
                                   (background-color . "#21242b")))
     :config
     (add-to-list 'mini-frame-advice-functions 'map-y-or-n-p)
+    (add-to-list 'mini-frame-advice-functions 'lsp-bridge-workspace-list-symbols)
     (add-to-list 'mini-frame-ignore-functions 'completing-read)
     (add-to-list 'mini-frame-ignore-commands 'elpaca-ui-search)
     (add-to-list 'mini-frame-ignore-commands 'evil-ex)
