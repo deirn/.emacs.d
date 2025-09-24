@@ -16,7 +16,7 @@
 
   ;; less jumpy scroll
   (scroll-step 1)                     ; scroll one line at a time
-  (scroll-margin 2)                   ; start scrolling when 2 lines from bottom
+  (scroll-margin 0)                   ; start scrolling when 2 lines from bottom
   (scroll-conservatively 100000)      ; never recenter automatically
   (scroll-preserve-screen-position t) ; keep point position when scrolling
   (auto-window-vscroll nil)
@@ -28,6 +28,10 @@
   :config
   (fset #'yes-or-no-p #'y-or-n-p)
   (setq-default indent-tabs-mode nil))
+
+(use-package ultra-scroll
+  :config
+  (ultra-scroll-mode 1))
 
 (defun +open-config ()
   "Open Emacs configuration."
