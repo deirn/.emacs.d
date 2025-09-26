@@ -16,44 +16,24 @@
                      (projects . 10)))
 
   :init
-  (defun +maybe-open-dashboard ()
+  (late! (open-dashboard . 99)
     (when (length< command-line-args 2)
       (dashboard-open)
       (when (get-buffer "*scratch*")
         (kill-buffer "*scratch*"))))
-  (late! (+maybe-open-dashboard))
 
   :config
-  (defun +dashboard-refresh ()
-    (with-current-buffer "*dashboard*"
-      (let ((inhibit-read-only t))
-        (dashboard-insert-startupify-lists t))))
+  (defun +dashboard-inhibit-kill ()
+    "Disallow killing dashboard buffer when it is visible."
+    (if (not (get-buffer-window (current-buffer) 'visible)) t
+      (message "Cannot kill *dasboard* when it is open.")
+      nil))
 
-  (defvar +dashboard-resize-timer nil
-    "Idle timer for debounced dashboard refresh.")
-
-  (defun +schedule-dashboard-refresh (&optional _)
-    "Schedule dashboard refresh after resize."
-    (when +dashboard-resize-timer
-      (cancel-timer +dashboard-resize-timer))
-    (setq +dashboard-resize-timer
-          (run-with-idle-timer
-           0.5 nil
-           (lambda ()
-             (when (get-buffer "*dashboard*")
-               (+dashboard-refresh))))))
-
-  (defun +dont-kill-dashboard-buffer ()
-    (add-hook 'kill-buffer-query-functions
-              (lambda ()
-                (if (get-buffer-window (current-buffer) 'visible)
-                    (progn (message "Cannot kill *dasboard* when it is open.")
-                           nil)
-                  t))
-              nil t))
+  (defun +dashboard-setup ()
+    (add-hook 'kill-buffer-query-functions #'+dashboard-inhibit-kill nil t)
+    (keymap-local-set "<f5>" #'dashboard-open))
   :hook
-  ;; (window-size-change-functions . +schedule-dashboard-refresh)
-  (dashboard-mode . +dont-kill-dashboard-buffer))
+  (dashboard-mode . +dashboard-setup))
 
 (map! spc
   "o d" '("dashboard" . dashboard-open))

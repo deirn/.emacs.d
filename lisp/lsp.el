@@ -106,7 +106,8 @@
    (defun acm-menu-render-items)
    (el-patch-swap (concat quick-access-key ". ")
                   (concat (propertize quick-access-key 'face annotation-face) nerd-icons-corfu--space)))
-  (late! (el-patch-eval-template 'acm-menu-render-items 'defun))
+  (late! patch-acm-quick-access
+    (el-patch-eval-template 'acm-menu-render-items 'defun))
 
   (evil-set-initial-state 'lsp-bridge-ref-mode 'insert)
   (+pop "*lsp-bridge-doc*")

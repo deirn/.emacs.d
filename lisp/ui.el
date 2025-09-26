@@ -19,7 +19,7 @@
   (conf-mode . display-line-numbers-mode)
   (text-mode . display-line-numbers-mode))
 
-(late!
+(late! ui
   (global-hl-line-mode)
   (line-number-mode)
   (column-number-mode))

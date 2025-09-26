@@ -23,6 +23,7 @@
 (defun +center-message-function (msg)
   "Center echo area MSG."
   (when (not (minibufferp (window-buffer)))
+    (setq msg (string-trim msg))
     (let* ((frame-width (frame-width))
            (msg-width (string-width msg))
            (spc-width (round (/ (- frame-width msg-width) 2)))

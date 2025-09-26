@@ -22,12 +22,26 @@
   "Hook that runs after startup."
   :type 'hook)
 
-(defmacro late! (&rest body)
-  "Delay running BODY until after startup."
+(defmacro late! (spec &rest body)
+  "Assign function NAME with BODY to `+late-hook'.
+SPEC can be symbol NAME or cons (NAME . DEPTH).
+NAME can be nil, in which the hook will be anonymous.
+See `add-hook' for DEPTH."
   (declare (indent defun))
-  (if (bound-and-true-p +late-hook-ran)
-      `(progn ,@body)
-    `(add-hook '+late-hook #'(lambda () ,@body))))
+  (let ((name spec) depth
+        (ran (bound-and-true-p +late-hook-ran)))
+    (when (consp spec)
+      (setq name (car spec)
+            depth (cdr spec)))
+    (setq name (when name (intern (concat "+late-" (symbol-name name)))))
+    (if name `(progn
+                (defun ,name ()
+                  ,@body)
+                ,(if ran `(,name)
+                   `(add-hook '+late-hook #',name ,depth)))
+      ;; anonymous
+      (if ran `(progn ,@body)
+        `(add-hook '+late-hook #'(lambda () ,@body))))))
 
 (add-hook 'elpaca-after-init-hook
           (lambda ()

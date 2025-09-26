@@ -46,10 +46,10 @@
 (defmacro map! (definer &rest rules)
   "Map RULES for DEFINER."
   (declare (indent defun))
-  (if (eq definer nil)
-      `(late! (general-def ,@rules))
+  (if (null definer)
+      `(late! nil (general-def ,@rules))
     (let ((definer (intern (concat "+key-" (symbol-name definer)))))
-      `(late! (,definer ,@rules)))))
+      `(late! nil (,definer ,@rules)))))
 
 (map! spc
   "b" '(:ignore t :which-key "buffer")
