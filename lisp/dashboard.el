@@ -16,11 +16,13 @@
                      (projects . 10)))
 
   :init
-  (late! (open-dashboard . 99)
+  (late! (open-dashboard . 90)
     (when (length< command-line-args 2)
       (dashboard-open)
       (when (get-buffer "*scratch*")
-        (kill-buffer "*scratch*"))))
+        (kill-buffer "*scratch*"))
+      ;; refresh it immediately to fix image background
+      (dashboard-open)))
 
   :config
   (defun +dashboard-inhibit-kill ()

@@ -31,7 +31,7 @@
       (goto-char (point-min))
       (modify-frame-parameters (selected-frame) (read (current-buffer))))))
 
-(late! setup-frame
+(late! (setup-frame . -90)
   (when window-system
     (+load-frameg)
     (add-hook 'kill-emacs-hook '+save-frameg)))

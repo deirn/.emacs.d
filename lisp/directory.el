@@ -19,7 +19,7 @@
   (dirvish-collapse-separator "/")
   (dirvish-subtree-skip-intermediate-folders t)
   :config
-  (dirvish-side-follow-mode 1)
+  ;; (dirvish-side-follow-mode 1)
   (put 'dired-find-alternate-file 'disabled nil)
 
   (defun +dirvish-side-revert ()
