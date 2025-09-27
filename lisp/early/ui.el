@@ -1,11 +1,19 @@
-;;; frame.el --- -*- lexical-binding: t; -*-
+;;; ui.el --- -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;;   Frame
+;;;   Early ui configuration
 ;;; Code:
+
+;; disable builtin tool bars
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+
+(set-face-attribute 'default nil
+                    :background "#282c34"
+                    :foreground "#bbc2cf")
 
 (defconst +frameg (expand-file-name "frameg" user-emacs-directory))
 
-;; Custom functions/hooks for persisting/loading frame geometry upon save/load
 ;; https://www.reddit.com/r/emacs/comments/4ermj9/comment/d237n0i
 (defun +save-frameg ()
   "Gets the current frame's geometry and saves to `frameg'."
@@ -23,17 +31,14 @@
           (height     . ,(frame-parameter frame 'height))
           (fullscreen . ,(frame-parameter frame 'fullscreen))))))))
 
-(defun +load-frameg ()
-  "Load frame parametes from `frameg'."
-  (when (file-readable-p +frameg)
-    (with-temp-buffer
-      (insert-file-contents +frameg)
-      (goto-char (point-min))
-      (modify-frame-parameters (selected-frame) (read (current-buffer))))))
+(add-hook 'kill-emacs-hook #'+save-frameg)
 
-(late! (setup-frame . -90)
-  (when window-system
-    (+load-frameg)
-    (add-hook 'kill-emacs-hook '+save-frameg)))
+(when (file-readable-p +frameg)
+  (with-temp-buffer
+    (insert-file-contents +frameg)
+    (goto-char (point-min))
+    (let ((parameters (read (current-buffer))))
+      (setq initial-frame-alist parameters)
+      (modify-frame-parameters (selected-frame) parameters))))
 
-;;; frame.el ends here.
+;;; ui.el ends here.

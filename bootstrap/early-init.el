@@ -2,6 +2,10 @@
 
 (when (version< emacs-version "30") (error "This requires Emacs 30 and above!"))
 
+(defun +load-file-name ()
+  "Get current loaded file name."
+  (file-truename (or load-file-name buffer-file-name)))
+
 (defun -load-abs (file no-error)
   (when (file-directory-p (file-name-as-directory file))
     (setq file (expand-file-name "_index" file)))
@@ -11,7 +15,7 @@
   (if (file-name-absolute-p file)
       (-load-abs file no-error)
     (when (null dir)
-      (setq dir (file-truename (file-name-directory load-file-name))))
+      (setq dir (file-name-directory (+load-file-name))))
     (-load-abs (expand-file-name file dir) no-error)))
 
 (defmacro load! (file &optional dir no-error)

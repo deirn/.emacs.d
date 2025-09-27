@@ -23,13 +23,6 @@
     "Save flymake buffers."
     (add-to-list '+flymake-buffers (flymake--diagnostics-buffer-name)))
 
-  (define-advice elisp-flymake-byte-compile (:around (orig-fn &rest args) inherit-load-path)
-    "Make Flymake inherit `load-path' that might be modified by Elpaca.
-This remove warnings on `use-package' body.
-https://emacs.stackexchange.com/a/78310"
-    (let ((elisp-flymake-byte-compile-load-path (append elisp-flymake-byte-compile-load-path load-path)))
-      (apply orig-fn args)))
-
   (+pop '(major-mode flymake-diagnostics-buffer-mode) 'bottom)
   :hook
   (prog-mode . flymake-mode)

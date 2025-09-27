@@ -22,7 +22,7 @@
       (when (get-buffer "*scratch*")
         (kill-buffer "*scratch*"))
       ;; refresh it immediately to fix image background
-      (dashboard-open)))
+      (run-at-time 0 nil #'dashboard-open)))
 
   :config
   (defun +dashboard-inhibit-kill ()

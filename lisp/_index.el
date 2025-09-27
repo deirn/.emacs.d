@@ -3,14 +3,15 @@
 ;;; Code:
 
 (load! (package-lock
-	    elpaca-init
+        elpaca-init
         package-utils
+        patch
         optimizations
         keybind-setup
         behaviour
         minibuffer
         ui
-        frame
+        ;; frame
         window
         ;; child-frames
         popups
@@ -29,6 +30,7 @@
         debug
         formatting
         ;; everywhere
+        trust
         ))
 
 ;;; _index.el ends here.

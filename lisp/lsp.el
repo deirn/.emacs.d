@@ -102,12 +102,9 @@
       (setf (nth 2 map) (replace-regexp-in-string "-" "_" (nth 2 map)))))
 
   ;; Show quick access key without dot
-  (el-patch-define-template
-   (defun acm-menu-render-items)
-   (el-patch-swap (concat quick-access-key ". ")
-                  (concat (propertize quick-access-key 'face annotation-face) nerd-icons-corfu--space)))
-  (late! patch-acm-quick-access
-    (el-patch-eval-template 'acm-menu-render-items 'defun))
+  (patch! defun acm-menu-render-items
+    (el-patch-swap (concat quick-access-key ". ")
+                   (concat (propertize quick-access-key 'face annotation-face) nerd-icons-corfu--space)))
 
   (evil-set-initial-state 'lsp-bridge-ref-mode 'insert)
   (+pop "*lsp-bridge-doc*")

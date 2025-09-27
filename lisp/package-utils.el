@@ -66,7 +66,6 @@ Usage:
         (setq body `((after! ,next ,@body))))
       `(after! ,pkg ,@body))))
 
-(use-package el-patch)
 (use-package package-lint)
 
 ;;; package-utils.el ends here.
