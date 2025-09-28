@@ -6,6 +6,11 @@
 
 (setq lisp-indent-function #'+fuco1-lisp-indent-function)
 
+(late! set-flymake-elisp-load-path
+  (setq elisp-flymake-byte-compile-load-path
+        (append elisp-flymake-byte-compile-load-path
+                load-path)))
+
 (use-package helpful
   :commands (helpful-at-point)
   :config

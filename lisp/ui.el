@@ -78,20 +78,13 @@
   :hook
   (+late . global-hl-todo-mode))
 
-(use-package perfect-margin
-  :commands (perfect-margin-mode)
+(use-package writeroom-mode
+  :custom
+  (writeroom-width 120)
+  (writeroom-fullscreen-effect 'maximized)
+  (writeroom-mode-line t)
   :config
-  (define-advice perfect-margin--supported-side-window-p (:around (orig-fn win) more-side-window)
-    (or (+is-dirvish-side win)
-        (funcall orig-fn win))))
-
-(define-minor-mode +zen-mode
-  "Toggle Zen Mode."
-  :global t
-  :init-value nil
-  (let ((enable (if +zen-mode 1 -1)))
-    (global-hide-mode-line-mode enable)
-    (perfect-margin-mode enable)))
+  (add-to-list 'writeroom-major-modes 'prog-mode))
 
 (define-minor-mode +wrap-mode
   "Toggle Wrap Mode."
@@ -105,9 +98,8 @@
   "t M-m" '("global mode line" . global-hide-mode-line-mode)
   "t M"   '("menu bar"         . menu-bar-mode)
   "t n"   '("line numbers"     . display-line-numbers-mode)
-  "t p"   '("perfect margin"   . perfect-margin-mode)
   "t w"   '("wrap"             . +wrap-mode)
-  "t z"   '("zen"              . +zen-mode)
+  "t z"   '("zen"              . global-writeroom-mode)
   "t SPC" '("whitespace"       . whitespace-mode))
 
 ;;; ui.el ends here.

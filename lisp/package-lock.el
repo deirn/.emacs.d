@@ -42,12 +42,19 @@ PIN means pin the package or not"
              (host (or (plist-get recipe :host) (plist-get recipe :fetcher)))
              (repo (plist-get recipe :repo))
              (files (plist-get recipe :files))
-             (build (plist-get recipe :build)))
+             (build (plist-get recipe :build))
+             (old-recipe (gethash name +packages))
+             (old-unlock (plist-get old-recipe :unlock))
+             (old-ref (plist-get old-recipe :ref)))
         (if source (push `(,name :ref ,ref) recipes)
           (push `(,name
+                  :source nil
                   ,@(when host `(:host ,host))
                   :repo ,repo
-                  :ref ,ref
+                  ,@(if old-unlock
+                        `(,@(when old-ref `(:ref ,old-ref))
+                          :unlock t)
+                      `(:ref ,ref))
                   ,@(when files `(:files ,files))
                   ,@(when build `(:build ,build)))
                 recipes))))
@@ -55,7 +62,7 @@ PIN means pin the package or not"
       (insert "( ;; -*- mode: lisp-data; -*-\n")
       (dolist (recipe (nreverse recipes))
         (insert (prin1-to-string recipe) "\n"))
-      (insert ")"))
+      (insert ")\n"))
     (delete-file temp)))
 
 (+packages-lock-read t)

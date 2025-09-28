@@ -14,9 +14,12 @@
 
 (defun +trust-content (path)
   "Modify `trusted-content' with specified PATH."
-  (interactive (list (abbreviate-file-name (expand-file-name (read-file-name "Trust content: " nil nil t)))))
-  (add-to-list 'trusted-content path)
-  (+save-trusted-content))
+  (interactive (list (read-file-name "Trust content: " nil default-directory t)))
+  (let* ((path (expand-file-name path))
+         (path (file-truename path))
+         (path (abbreviate-file-name path)))
+    (add-to-list 'trusted-content path)
+    (+save-trusted-content)))
 
 (defun +remove-trusted-content(path)
   "Remove `trusted-content' PATH entry."

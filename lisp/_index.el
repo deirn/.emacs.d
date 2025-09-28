@@ -11,9 +11,7 @@
         behaviour
         minibuffer
         ui
-        ;; frame
         window
-        ;; child-frames
         popups
         buffer
         dashboard
@@ -29,7 +27,6 @@
         edit
         debug
         formatting
-        ;; everywhere
         trust
         ))
 

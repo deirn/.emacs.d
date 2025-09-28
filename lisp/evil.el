@@ -8,6 +8,7 @@
   :custom
   (evil-want-minibuffer t)
   (evil-want-keybinding nil)
+  (evil-want-fine-undo t)
   (evil-undo-system 'undo-fu)
   (evil-respect-visual-line-mode t)
   :config
