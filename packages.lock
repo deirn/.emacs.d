@@ -68,6 +68,7 @@
 (orderless :ref "211ccb906b9444f7210106909b37c402d582731a")
 (package-lint :ref "f990665a1b4ca9eadbfcdb0b2a22fbb819e78ef4")
 (page-break-lines :ref "84b872a056404f11cacbf3fc2b0788aa7feac635")
+(parinfer-rust-mode :ref "d5578ec0b2e907cb1a2600057f524135c4553050")
 (pcre2el :ref "b4d846d80dddb313042131cf2b8fbf647567e000")
 (popon :ref "bf8174cb7e6e8fe0fe91afe6b01b6562c4dc39da")
 (posframe :ref "12f540c9ad5da09673b2bca1132b41f94c134e82")
