@@ -26,7 +26,6 @@
         kotlin
         markdown
         nix
-        python
         shell
         systemd
         text
