@@ -30,9 +30,7 @@
         (revert-buffer))))
   :hook
   (+late . dirvish-override-dired-mode)
-  (dired-mode . dired-omit-mode)
-  ;; (after-save . +dirvish-side-revert)
-  )
+  (dired-mode . dired-omit-mode))
 
 (use-package diredfl
   :after dirvish

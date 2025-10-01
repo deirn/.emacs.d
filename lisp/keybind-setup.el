@@ -43,13 +43,23 @@
     :states 'visual
     :keymaps 'override))
 
+(defvar +map-n nil)
 (defmacro map! (definer &rest rules)
   "Map RULES for DEFINER."
   (declare (indent defun))
-  (if (null definer)
-      `(late! nil (general-def ,@rules))
-    (let ((definer (intern (concat "+key-" (symbol-name definer)))))
-      `(late! nil (,definer ,@rules)))))
+  (let* ((file (or load-file-name buffer-file-name))
+         (file (file-truename file))
+         (file (file-relative-name file +deirnmacs-lisp-dir))
+         (file (file-name-sans-extension file))
+         (key (intern file))
+         (n (1+ (or (plist-get +map-n key) 0)))
+         (name (intern (format "map-%s-%s" file n)))
+         (spec (cons name 99)))
+    (setq +map-n (plist-put +map-n key n))
+    (if (null definer)
+        `(late! ,spec (general-def ,@rules))
+      (let ((definer (intern (concat "+key-" (symbol-name definer)))))
+        `(late! ,spec (,definer ,@rules))))))
 
 (map! spc
   "b" '(:ignore t :which-key "buffer")

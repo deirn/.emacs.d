@@ -1,4 +1,4 @@
-;;; edit-shortcuts.el --- -*- lexical-binding: t; -*-
+;;; edit.el --- -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;;   Editing Shortcut
 ;;; Code:
@@ -60,4 +60,4 @@
   [remap isearch-query-replace] #'anzu-isearch-query-replace
   [remap isearch-query-replace-regexp] #'anzu-isearch-query-replace-regexp)
 
-;;; edit-shortcuts.el ends here.
+;;; edit.el ends here.

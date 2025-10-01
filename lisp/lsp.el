@@ -9,8 +9,9 @@
     (add-to-list 'lsp-bridge-single-lang-server-mode-list (cons mode command))))
 
 (use-package mason
-  :hook
-  (+late . mason-ensure))
+  :config
+  (late! (mason . 99)
+    (mason-ensure)))
 
 (use-package lsp-bridge
   :after (yasnippet markdown-mode orderless nerd-icons-corfu el-patch)
@@ -31,7 +32,7 @@
   (lsp-bridge-code-action-enable-popup-menu nil)
 
   ;; manually enabled below
-  (lsp-bridge-enable-mode-line nil)
+  (lsp-bridge-enable-mode-line t)
 
   (lsp-bridge-enable-completion-in-minibuffer t)
   (lsp-bridge-enable-completion-in-string t)
@@ -130,11 +131,13 @@
     (apply orig-fn args)
     (advice-remove 'find-file #'find-file@set-jump-inner))
 
-  ;; (define-advice lsp-bridge--mode-line-format (:filter-return (ret) rocket)
-  ;;   "Replace `lsp-bridge' mode line string with a rocket icon."
-  ;;   (when ret
-  ;;     (let ((face (doom-modeline-face (get-text-property 0 'face ret))))
-  ;;       (propertize (nerd-icons-mdicon "nf-md-rocket") 'face face))))
+  (set-face-bold 'lsp-bridge-alive-mode-line nil)
+  (set-face-bold 'lsp-bridge-kill-mode-line nil)
+  (define-advice lsp-bridge--mode-line-format (:filter-return (ret) rocket)
+    "Replace `lsp-bridge' mode line string with a rocket icon."
+    (when ret
+      (let ((face (get-text-property 0 'face ret)))
+        (propertize (nerd-icons-mdicon "nf-md-rocket") 'face face 'display '(raise 0.05)))))
 
   (define-advice lsp-bridge--enable (:after () extra)
     (corfu-mode -1)

@@ -54,8 +54,7 @@
   :hook
   (kill-emacs . dape-breakpoint-save)
   (+late . dape-breakpoint-load)
-  :config
-  (dape-breakpoint-global-mode 1))
+  (+late . dape-breakpoint-global-mode))
 
 (use-package ansi-color
   :ensure nil

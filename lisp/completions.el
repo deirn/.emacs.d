@@ -29,9 +29,9 @@
   (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package yasnippet
-  :defer t
   :hook
-  (+late . yas-global-mode))
+  (prog-mode . yas-minor-mode)
+  (text-mode . yas-minor-mode))
 
 (use-package yasnippet-snippets :after yasnippet :defer t)
 

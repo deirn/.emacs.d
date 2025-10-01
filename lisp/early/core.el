@@ -19,4 +19,6 @@
           gc-cons-percentage 1.0)
   (setq gc-cons-threshold most-positive-fixnum))
 
+(setq use-package-compute-statistics t)
+
 ;;; core.el ends here.

@@ -5,9 +5,9 @@
 
 (use-package elcord
   :custom
-  (elcord-use-major-mode-as-main-icon t)
-  :hook
-  (+late . elcord-mode))
+  (elcord-use-major-mode-as-main-icon t))
+  ;; :hook)
+  ;; (+late . elcord-mode))
 
 (map! spc
   "t d" '("discord rich presence" . elcord-mode))

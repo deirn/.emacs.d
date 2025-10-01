@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(defconst +deirnmacs-lisp-dir (expand-file-name "lisp" +deirnmacs-directory))
+
 (load! (package-lock
         elpaca-init
         package-utils
@@ -27,7 +29,6 @@
         edit
         debug
         formatting
-        trust
-        ))
+        trust))
 
 ;;; _index.el ends here.

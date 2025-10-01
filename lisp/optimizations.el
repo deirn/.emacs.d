@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package benchmark-init
-  :config
-  (add-hook 'elpaca-after-init-hook 'benchmark-init/deactivate))
-
 (use-package gcmh
   :config
   (gcmh-mode 1))

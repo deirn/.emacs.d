@@ -41,7 +41,7 @@ See `add-hook' for DEPTH."
                    `(add-hook '+late-hook #',name ,depth)))
       ;; anonymous
       (if ran `(progn ,@body)
-        `(add-hook '+late-hook #'(lambda () ,@body))))))
+        `(add-hook '+late-hook #'(lambda () ,@body) ,depth)))))
 
 (add-hook 'elpaca-after-init-hook
           (lambda ()

@@ -30,8 +30,8 @@
   (setq-default indent-tabs-mode nil))
 
 (use-package ultra-scroll
-  :config
-  (ultra-scroll-mode 1))
+  :hook
+  (+late . ultra-scroll-mode))
 
 (defun +open-config ()
   "Open Emacs configuration."

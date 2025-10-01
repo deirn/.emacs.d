@@ -10,47 +10,35 @@
   (evil-want-keybinding nil)
   (evil-want-fine-undo t)
   (evil-undo-system 'undo-fu)
-  (evil-respect-visual-line-mode t)
-  :config
-  (setq evil-insert-state-cursor `(,(face-foreground 'ansi-color-blue)    bar)
-        evil-normal-state-cursor `(,(face-foreground 'ansi-color-green)   box)
-        evil-emacs-state-cursor  `(,(face-foreground 'ansi-color-magenta) box)
-        evil-visual-state-cursor `(,(face-foreground 'ansi-color-yellow)  box))
-  (evil-mode 1))
+  (evil-respect-visual-line-mode t))
 
-(use-package evil-collection
-  :after evil
-  :init
-  (evil-collection-init))
-
-(use-package evil-surround
-  :after evil
-  :config
-  (global-evil-surround-mode 1))
-
-(use-package evil-snipe
-  :after evil
-  :config
-  (evil-snipe-mode 1)
-  (evil-snipe-override-mode 1))
+(use-package evil-collection)
+(use-package evil-surround)
+(use-package evil-snipe)
+(use-package evil-mc)
 
 (use-package evil-easymotion
-  :after evil
   :config
   (evilem-default-keybindings "g s"))
 
-(use-package evil-mc
-  :after evil
-  :config
-  (global-evil-mc-mode 1))
-
 (use-package evil-nerd-commenter
-  :after evil
   :init
   (evilnc-default-hotkeys))
 
 (use-package evil-anzu
   :after (evil anzu))
+
+(late! evil
+  (evil-mode)
+  (evil-collection-init)
+  (global-evil-surround-mode)
+  (evil-snipe-mode)
+  (evil-snipe-override-mode)
+  (global-evil-mc-mode))
+
+(map! normal
+  "g . j" #'evil-mc-make-cursor-move-next-line
+  "g . k" #'evil-mc-make-cursor-move-prev-line)
 
 (map! visual
   "A" #'evil-mc-make-cursor-in-visual-selection-end

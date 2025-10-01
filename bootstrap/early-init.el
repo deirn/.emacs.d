@@ -31,7 +31,7 @@ If NO-ERROR is not nil, report no error."
     `(progn ,@(mapcar (lambda (f) `(load! ,f ,dir ,no-error))
                       file))))
 
-(setq +deirnmacs-directory (expand-file-name ".." (file-truename user-emacs-directory)))
+(defconst +deirnmacs-directory (expand-file-name ".." (file-truename user-emacs-directory)))
 (dolist (file (directory-files +deirnmacs-directory nil directory-files-no-dot-files-regexp))
   (unless (or (string= file "bootstrap")
               (string= file "early-init.el")

@@ -5,7 +5,6 @@
 (apheleia :ref "f1d36031fc162f541f77d4f6c6c0fd6197aba077")
 (avy :ref "933d1f36cca0f71e4acb5fac707e9ae26c536264")
 (beancount :ref "eb8b9b72a750b8d5db97dec909298162ae798e33")
-(benchmark-init :ref "6507caa3c4cb2a6c9b85c771c5e9e5aeb7d745bc")
 (cape :ref "97641dcd1ebca1007badd26b2fb9269b86934c22")
 (combobulate :source nil :host github :repo "mickeynp/combobulate" :ref "17c71802eed2df1a6b25199784806da6763fb90c")
 (cond-let :ref "79a16e1f2428f0f79f03250b987bc79cd37a029e")

@@ -26,7 +26,9 @@
 
 (use-package nerd-icons :defer t
   :custom
-  (nerd-icons-default-adjust 0.1))
+  (nerd-icons-default-adjust 0.1)
+  :config
+  (nerd-icons-set-font))
 
 (use-package doom-themes
   :config
@@ -36,7 +38,6 @@
   :custom
   (doom-modeline-buffer-file-name-style 'relative-from-project)
   (doom-modeline-buffer-encoding 'nondefault)
-  (doom-modeline-minor-modes t)
   :hook
   (+late . doom-modeline-mode))
 
@@ -101,5 +102,9 @@
   "t w"   '("wrap"             . +wrap-mode)
   "t z"   '("zen"              . global-writeroom-mode)
   "t SPC" '("whitespace"       . whitespace-mode))
+
+(map! nil
+  :keymaps 'mode-line-major-mode-keymap
+  [mode-line down-mouse-3] #'minions-minor-modes-menu)
 
 ;;; ui.el ends here.
