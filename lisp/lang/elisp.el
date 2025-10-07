@@ -29,7 +29,4 @@
 
 (use-package pcre2el)
 
-(use-package parinfer-rust-mode
-  :hook emacs-lisp-mode)
-
 ;;; elisp.el ends here.
