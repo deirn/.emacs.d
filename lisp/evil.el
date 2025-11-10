@@ -10,7 +10,9 @@
   (evil-want-keybinding nil)
   (evil-want-fine-undo t)
   (evil-undo-system 'undo-fu)
-  (evil-respect-visual-line-mode t))
+  (evil-respect-visual-line-mode t)
+  :config
+  (evil-set-initial-state 'minibuffer-mode 'insert))
 
 (use-package evil-collection)
 (use-package evil-surround)
