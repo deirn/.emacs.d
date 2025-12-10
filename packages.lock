@@ -76,7 +76,7 @@
 (shrink-path :ref "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
 (smartparens :ref "b629b4e893ba21ba5a381f6c0054bb72f8e96df2")
 (solaire-mode :ref "c9334666bd208f3322e6118d30eba1b2438e2bb9")
-(svelte-ts-mode :source nil :host github :repo "leafOfTree/svelte-ts-mode" :ref "8a7b90358a79b7844a39ffa722eac2fd41eea2ca")
+(svelte-ts-mode :source nil :host github :repo "deirn/svelte-ts-mode" :ref "emacs-nightly")
 (symbol-overlay :ref "6151f4279bd94b5960149596b202cdcb45cacec2")
 (systemd :ref "8742607120fbc440821acbc351fda1e8e68a8806")
 (transient :ref "44d3a0357c28705758b135b23f19052e20d8c824")
