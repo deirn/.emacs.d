@@ -1,6 +1,5 @@
-;;; lsp.el --- -*- lexical-binding: t; -*-
+;;; lsp-bridge.el --- -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;;   LSP
 ;;; Code:
 
 (defun +lsp (mode command)
@@ -8,10 +7,24 @@
   (after! lsp-bridge
     (add-to-list 'lsp-bridge-single-lang-server-mode-list (cons mode command))))
 
-(use-package mason
-  :config
-  (late! (mason . 99)
-    (mason-ensure)))
+(defun +has-lsp ()
+  "Return whether the current buffer has LSP server."
+  (and (bound-and-true-p lsp-bridge-mode)
+       (lsp-bridge-has-lsp-server-p)))
+
+(defun +show-documentation ()
+  "Show documentation at point."
+  (interactive)
+  (if (+has-lsp)
+      (call-interactively #'lsp-bridge-show-documentation)
+    (call-interactively #'helpful-at-point)))
+
+(defun +show-symbols ()
+  "Show symbols in buffer."
+  (interactive)
+  (if (+has-lsp)
+      (call-interactively #'lsp-bridge-imenu)
+    (call-interactively #'consult-imenu)))
 
 (use-package lsp-bridge
   :after (yasnippet markdown-mode orderless nerd-icons-corfu el-patch)
@@ -177,41 +190,18 @@
 (use-package flymake-bridge
   :after flymake)
 
-(defun +has-lsp ()
-  "Return whether the current buffer has LSP server."
-  (and (bound-and-true-p lsp-bridge-mode)
-       (lsp-bridge-has-lsp-server-p)))
-
-(defun +show-documentation ()
-  "Show documentation at point."
-  (interactive)
-  (if (+has-lsp)
-      (call-interactively #'lsp-bridge-show-documentation)
-    (call-interactively #'helpful-at-point)))
-
-(defun +show-symbols ()
-  "Show symbols in buffer."
-  (interactive)
-  (if (+has-lsp)
-      (call-interactively #'lsp-bridge-imenu)
-    (call-interactively #'consult-imenu)))
-
 (map! spc
   "l"       '(:ignore t :which-key "lsp")
   "c s"     '("symbol list"   . consult-imenu)
   "l a"     '("action"        . lsp-bridge-code-action)
-  "l m"     '("mason"         . mason-manager)
   "l s"     '("symbol"        . lsp-bridge-workspace-list-symbols)
   "l r"     '("rename symbol" . lsp-bridge-rename)
   "l C-l"   '("toggle lsp"    . lsp-bridge-mode)
   "l C-M-l" '("restart lsp"   . lsp-bridge-restart-process))
-
-(map! normal
-  "K" #'+show-documentation)
 
 (map! nil
   :keymaps 'acm-mode-map
   "M-n" #'acm-select-next-page
   "M-p" #'acm-select-prev-page)
 
-;;; lsp.el ends here.
+;;; lsp-bridge.el ends here.

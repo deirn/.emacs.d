@@ -93,5 +93,6 @@
 (with-editor :ref "87a384a0e59260cca41ca8831d98e195b1ec8ada")
 (writeroom-mode :ref "cca2b4b3cfcfea1919e1870519d79ed1a69aa5e2")
 (yasnippet :ref "c1e6ff23e9af16b856c88dfaab9d3ad7b746ad37")
+(yasnippet-capf :ref "f53c42a996b86fc95b96bdc2deeb58581f48c666")
 (yasnippet-snippets :ref "4f9f9e7b29822d66a34b7d5f1c19ed65cce1d8e1")
 )

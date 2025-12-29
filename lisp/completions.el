@@ -39,11 +39,24 @@
   :custom
   (cape-dabbrev-buffer-function #'cape-text-buffers)
   :init
-  (add-hook 'completion-at-point-functions #'cape-dabbrev))
+  (defun +cape-h ()
+    (add-to-list 'completion-at-point-functions #'cape-dabbrev))
+  :hook
+  (prog-mode . +cape-h))
+
+(use-package yasnippet-capf
+  :after cape
+  :init
+  (defun +yasnippet-capf-h ()
+    (add-to-list 'completion-at-point-functions #'yasnippet-capf))
+  :hook
+  (prog-mode . +yasnippet-capf-h)
+  (emacs-lisp-mode . +yasnippet-capf-h))
 
 (use-package corfu
   :custom
   (corfu-auto t)
+  (corfu-auto-prefix 2)
   (global-corfu-minibuffer nil)
   :hook
   (+late . global-corfu-mode))
