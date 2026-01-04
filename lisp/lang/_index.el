@@ -20,6 +20,7 @@
   (global-treesit-auto-mode 1))
 
 (load! (beancount
+        c
         csv
         dart
         elisp
