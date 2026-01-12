@@ -33,6 +33,10 @@
   :hook
   (+late . ultra-scroll-mode))
 
+(use-package mise
+  :hook
+  (+late . global-mise-mode))
+
 (defun +open-config ()
   "Open Emacs configuration."
   (interactive)
